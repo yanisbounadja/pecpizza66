@@ -682,9 +682,17 @@ export default function Page() {
               alt="Logo PEC"
               className="h-12 w-12 rounded-full border border-white/20 object-cover shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
             />
-            <div className="space-y-1">
+            <div className="space-y-2">
               <p className="text-sm font-semibold tracking-[0.12em] text-[#F5F5F5]">PEC © 2026</p>
               <p className="text-sm text-[#A0A0A0]">Pizzeria artisanale a Ille-sur-Tet</p>
+              <a
+                href="https://www.pappers.fr/entreprise/pec-102377082"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block text-xs text-[#707070] underline decoration-white/15 underline-offset-4 transition hover:text-[#2E7D32] hover:decoration-[#2E7D32]/60"
+              >
+                Fiche entreprise (Pappers)
+              </a>
             </div>
           </div>
           <div className="flex items-center gap-3">
