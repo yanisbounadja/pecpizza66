@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 import { siteConfig } from "./site-config";
 import {
   Flame,
@@ -14,6 +15,7 @@ import {
   Sparkles,
   Star,
   UtensilsCrossed,
+  X,
   type LucideIcon,
 } from "lucide-react";
 
@@ -168,7 +170,16 @@ const ctaPrimary =
   "rounded-full bg-[#C62828] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(198,40,40,0.45)] transition hover:scale-[1.03] hover:bg-[#B71C1C] hover:shadow-[0_18px_40px_rgba(198,40,40,0.55)]";
 const ctaSecondary =
   "rounded-full border border-[#2E7D32]/40 bg-[#2E7D32]/15 px-6 py-3 text-sm font-semibold text-[#F5F5F5] transition hover:scale-[1.03] hover:bg-[#2E7D32]/25";
-const pizzaSourceUrl = "https://fr.freepik.com/photos/pizza";
+const pizzaMenuImageUrl =
+  "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80";
+
+/** Parent du menu : orchestre le stagger sans exiger un second passage `whileInView` sur la grille (problème mobile). */
+const menuSectionOrchestrator = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.06 },
+  },
+};
 
 const IconBadge = ({ icon: Icon, className }: { icon: LucideIcon; className?: string }) => (
   <span className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 p-1.5">
@@ -176,11 +187,28 @@ const IconBadge = ({ icon: Icon, className }: { icon: LucideIcon; className?: st
   </span>
 );
 
+type PizzaItem = (typeof pizzas)[number];
+
 export default function Page() {
   const { scrollY } = useScroll();
   const heroBadgeY = useTransform(scrollY, [0, 500], [0, -24]);
   const orbY = useTransform(scrollY, [0, 1200], [0, -100]);
   const heroCardY = useTransform(scrollY, [0, 800], [0, -45]);
+  const [selectedPizza, setSelectedPizza] = useState<PizzaItem | null>(null);
+
+  useEffect(() => {
+    if (!selectedPizza) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedPizza(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [selectedPizza]);
 
   return (
     <main className="relative overflow-hidden bg-[#0B0B0B] text-[#F5F5F5] selection:bg-[#C62828] selection:text-white">
@@ -349,46 +377,46 @@ export default function Page() {
 
       <motion.section
         id="menu"
-        variants={sectionVariant}
+        variants={menuSectionOrchestrator}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.08, margin: "0px 0px 120px 0px" }}
         className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-8"
       >
-        <div className="mb-10 flex items-end justify-between gap-5">
+        <motion.div variants={sectionVariant} className="mb-10 flex items-end justify-between gap-5">
           <div>
             <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#2E7D32]">Menu selectionne</p>
             <h2 className="text-3xl font-semibold sm:text-4xl">Des pizzas gourmandes qui marquent les esprits</h2>
           </div>
-        </div>
+        </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid gap-6 md:grid-cols-2 xl:grid-cols-3"
-        >
+        <motion.div variants={staggerContainer} className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {pizzas.map((pizza) => (
             <motion.article
               key={pizza.name}
               variants={sectionVariant}
               whileHover={{ y: -8, scale: 1.015 }}
-              className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#1A1A1A] p-6 shadow-[0_20px_40px_rgba(0,0,0,0.25)]"
+              tabIndex={0}
+              role="button"
+              aria-haspopup="dialog"
+              aria-label={`Details de la pizza ${pizza.name}`}
+              onClick={() => setSelectedPizza(pizza)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setSelectedPizza(pizza);
+                }
+              }}
+              className="group relative cursor-pointer overflow-hidden rounded-[2rem] border border-white/10 bg-[#1A1A1A] p-6 text-left shadow-[0_20px_40px_rgba(0,0,0,0.25)] outline-none transition focus-visible:ring-2 focus-visible:ring-[#2E7D32] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B0B]"
             >
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_0%,rgba(46,125,50,0.14),transparent_35%)] opacity-0 transition duration-300 group-hover:opacity-100" />
-              <a
-                href={pizzaSourceUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mb-5 block overflow-hidden rounded-2xl border border-white/15"
-              >
+              <div className="mb-5 block overflow-hidden rounded-2xl border border-white/15">
                 <img
-                  src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80"
-                  alt={`Pizza ${pizza.name}`}
+                  src={pizzaMenuImageUrl}
+                  alt=""
                   className="h-36 w-full object-cover transition duration-500 group-hover:scale-105"
                 />
-              </a>
+              </div>
               <div className="mb-5 flex items-center justify-between">
                 <h3 className="inline-flex items-center gap-2 text-xl font-semibold">
                   {pizza.name}
@@ -401,7 +429,7 @@ export default function Page() {
               <p className="mb-3 inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-[#A0A0A0]">
                 {pizza.category}
               </p>
-              <p className="mb-6 text-sm leading-relaxed text-[#A0A0A0]">{pizza.description}</p>
+              <p className="text-sm leading-relaxed text-[#A0A0A0]">{pizza.description}</p>
             </motion.article>
           ))}
         </motion.div>
@@ -574,6 +602,77 @@ export default function Page() {
           </div>
         </div>
       </motion.section>
+
+      <AnimatePresence>
+        {selectedPizza ? (
+          <motion.div
+            key="pizza-modal"
+            role="presentation"
+            className="fixed inset-0 z-[100] flex items-end justify-center bg-black/75 p-0 sm:items-center sm:p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setSelectedPizza(null)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="pizza-dialog-title"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="relative max-h-[min(90vh,880px)] w-full max-w-lg overflow-y-auto rounded-t-[2rem] border border-white/15 bg-[#161616] p-6 pb-8 shadow-[0_-24px_60px_rgba(0,0,0,0.55)] sm:rounded-[2rem] sm:shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="absolute right-4 top-4 z-10 rounded-full border border-white/15 bg-white/5 p-2 text-[#F5F5F5] transition hover:bg-white/10"
+                onClick={() => setSelectedPizza(null)}
+                aria-label="Fermer la fenetre"
+              >
+                <X className="h-5 w-5" aria-hidden />
+              </button>
+              <div className="mb-5 overflow-hidden rounded-2xl border border-white/15">
+                <img
+                  src={pizzaMenuImageUrl}
+                  alt={`Pizza ${selectedPizza.name}`}
+                  className="aspect-[4/3] w-full object-cover sm:aspect-video"
+                />
+              </div>
+              <div className="mb-4 flex flex-wrap items-start justify-between gap-3 pr-10">
+                <h2 id="pizza-dialog-title" className="inline-flex items-center gap-2 text-2xl font-semibold text-[#F5F5F5]">
+                  {selectedPizza.name}
+                  <IconBadge icon={selectedPizza.icon} className="h-5 w-5 text-[#2E7D32]" />
+                </h2>
+                <span className="shrink-0 rounded-full border border-[#2E7D32]/45 bg-[#2E7D32]/14 px-3 py-1.5 text-sm font-medium text-[#F5F5F5]/95">
+                  {selectedPizza.price}
+                </span>
+              </div>
+              <p className="mb-4 inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-[#A0A0A0]">
+                {selectedPizza.category}
+              </p>
+              <p className="mb-6 text-base leading-relaxed text-[#C8C8C8]">{selectedPizza.description}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={`tel:${siteConfig.telephone}`} className={ctaPrimary}>
+                  <span className="inline-flex items-center gap-2">
+                    Appeler
+                    <Phone className="h-4 w-4" />
+                  </span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPizza(null)}
+                  className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-[#F5F5F5] transition hover:bg-white/10"
+                >
+                  Fermer
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       <footer className="border-t border-white/10 bg-[#111111] py-10">
         <div className="mx-auto grid w-full max-w-7xl gap-5 px-5 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-center">
