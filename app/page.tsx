@@ -22,23 +22,23 @@ import {
 const navItems = [
   { label: "Accueil", href: "#accueil" },
   { label: "Menu", href: "#menu" },
-  { label: "A propos", href: "#apropos" },
+  { label: "À propos", href: "#apropos" },
   { label: "Avis", href: "#avis" },
   { label: "Contact", href: "#contact" },
 ];
 
 const features = [
-  { icon: Pizza, title: "Pate artisanale", text: "Fermentation soignee pour une texture legere et savoureuse." },
-  { icon: Flame, title: "Cuisson parfaite", text: "Une cuisson maitrisee pour une pizza doree et reguliere." },
-  { icon: Leaf, title: "Recettes genereuses", text: "Des associations gourmandes inspirees de l'Italie." },
-  { icon: MapPin, title: "A Ille-sur-Tet", text: "Une pizzeria locale, proche de vous, au coeur de la ville." },
+  { icon: Pizza, title: "Pâte artisanale", text: "Fermentation soignée pour une texture légère et savoureuse." },
+  { icon: Flame, title: "Cuisson parfaite", text: "Une cuisson maîtrisée pour une pizza dorée et régulière." },
+  { icon: Leaf, title: "Recettes généreuses", text: "Des associations gourmandes inspirées de l'Italie." },
+  { icon: MapPin, title: "À Ille-sur-Têt", text: "Une pizzeria locale, proche de vous, au cœur de la ville." },
 ];
 
 const pizzas = [
   {
     name: "Margherita",
-    description: "Sauce tomate, mozzarella fondante, basilic frais.",
-    price: "10,90 EUR",
+    description: "Sauce tomate, mozzarella, origan.",
+    price: "9,90 EUR",
     icon: UtensilsCrossed,
     category: "Base Tomate",
   },
@@ -51,85 +51,113 @@ const pizzas = [
   },
   {
     name: "Merguez",
-    description: "Sauce tomate, mozzarella, merguez, herbes.",
-    price: "13,90 EUR",
+    description: "Sauce tomate, mozzarella, merguez, poivrons, oignons, olives.",
+    price: "13,50 EUR",
     icon: Flame,
     category: "Base Tomate",
   },
   {
-    name: "Boeuf BBQ",
-    description: "Sauce tomate, mozzarella, boeuf, sauce barbecue.",
-    price: "14,50 EUR",
+    name: "Bœuf BBQ",
+    description: "Sauce tomate, mozzarella, bœuf haché, sauce BBQ, oignons.",
+    price: "13,90 EUR",
     icon: UtensilsCrossed,
     category: "Base Tomate",
   },
   {
     name: "Calzone",
-    description: "Sauce tomate, mozzarella, jambon, champignons.",
+    description: "Sauce tomate, mozzarella, jambon, champignons, œuf.",
     price: "13,90 EUR",
     icon: Sparkles,
     category: "Base Tomate",
   },
   {
-    name: "Vegetarienne",
-    description: "Sauce tomate, mozzarella, legumes de saison.",
+    name: "Végétarienne",
+    description: "Sauce tomate, mozzarella, poivrons, courgettes, champignons, oignons, olives.",
     price: "12,90 EUR",
     icon: Leaf,
     category: "Base Tomate",
   },
   {
+    name: "Gargantua",
+    description: "Sauce tomate, mozzarella, bœuf haché, merguez, poivrons, oignons, olives.",
+    price: "14,90 EUR",
+    icon: Flame,
+    category: "Base Tomate",
+  },
+  {
     name: "Tartiflette",
-    description: "Base creme, mozzarella, pommes de terre, lardons, oignons.",
-    price: "15,90 EUR",
+    description: "Crème fraîche, mozzarella, pommes de terre, lardons, reblochon.",
+    price: "13,90 EUR",
     icon: Pizza,
-    category: "Base Creme",
+    category: "Base Crème",
   },
   {
     name: "Poulet Curry",
-    description: "Base creme, mozzarella, poulet marine curry.",
-    price: "14,90 EUR",
+    description: "Crème fraîche, mozzarella, poulet, sauce curry, oignons.",
+    price: "13,90 EUR",
     icon: Flame,
-    category: "Base Creme",
+    category: "Base Crème",
   },
   {
     name: "Saumon",
-    description: "Base creme, mozzarella, saumon, touche citronnee.",
-    price: "16,90 EUR",
+    description: "Crème fraîche, mozzarella, saumon, oignons, aneth.",
+    price: "14,90 EUR",
     icon: Star,
-    category: "Base Creme",
+    category: "Base Crème",
   },
   {
-    name: "Chevre Miel",
-    description: "Base creme, mozzarella, chevre, filet de miel.",
-    price: "14,90 EUR",
+    name: "Chèvre Miel",
+    description: "Crème fraîche, mozzarella, chèvre, miel, noix.",
+    price: "12,90 EUR",
     icon: Sparkles,
-    category: "Base Creme",
+    category: "Base Crème",
   },
   {
     name: "Kebab",
-    description: "Base creme, mozzarella, viande kebab, oignons.",
-    price: "13,90 EUR",
+    description: "Crème fraîche, mozzarella, viande kebab, oignons, sauce blanche.",
+    price: "13,50 EUR",
     icon: Rocket,
-    category: "Base Creme",
+    category: "Base Crème",
   },
   {
     name: "4 Fromages",
-    description: "Base creme, mozzarella, chevre, gorgonzola, emmental.",
-    price: "14,90 EUR",
+    description: "Crème fraîche, mozzarella, gorgonzola, chèvre, emmental.",
+    price: "13,90 EUR",
     icon: Pizza,
-    category: "Base Creme",
+    category: "Base Crème",
   },
   {
     name: "Pizza de Saison",
     description: "Recette signature selon les produits du moment.",
     price: "15,90 EUR",
     icon: Rocket,
-    category: "Specialite",
+    category: "Spécialité",
   },
   {
-    name: "Nutella Banane Speculoos",
-    description: "Pate pizza sucree, creme nutella, banane et speculoos.",
-    price: "9,90 EUR",
+    name: "Nutella",
+    description: "Pâte pizza sucrée, Nutella.",
+    price: "8,90 EUR",
+    icon: Sparkles,
+    category: "Dessert",
+  },
+  {
+    name: "Nutella Banane",
+    description: "Pâte pizza sucrée, Nutella, banane.",
+    price: "9,50 EUR",
+    icon: Sparkles,
+    category: "Dessert",
+  },
+  {
+    name: "Nutella Speculoos",
+    description: "Pâte pizza sucrée, Nutella, speculoos.",
+    price: "9,50 EUR",
+    icon: Sparkles,
+    category: "Dessert",
+  },
+  {
+    name: "Nutella Fraise",
+    description: "Pâte pizza sucrée, Nutella, fraise.",
+    price: "9,50 EUR",
     icon: Sparkles,
     category: "Dessert",
   },
@@ -141,11 +169,11 @@ const reviews = [
     author: "Camille R.",
   },
   {
-    quote: "Pate excellente, service rapide, rien a dire.",
+    quote: "Pâte excellente, service rapide, rien à dire.",
     author: "Julien M.",
   },
   {
-    quote: "Tres bonne adresse a Ille-sur-Tet.",
+    quote: "Très bonne adresse à Ille-sur-Têt.",
     author: "Nora B.",
   },
 ];
@@ -278,14 +306,14 @@ export default function Page() {
               style={{ y: heroBadgeY }}
               className="inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.18em] text-[#A0A0A0]"
             >
-              Fait maison - Produits frais - A Ille-sur-Tet
+              Fait maison - Produits frais - À Ille-sur-Têt
             </motion.span>
             <div className="space-y-5">
               <h1 className="max-w-3xl bg-gradient-to-r from-[#F5F5F5] via-[#DADADA] to-[#F5F5F5] bg-clip-text text-4xl font-semibold leading-tight text-transparent sm:text-5xl lg:text-6xl">
-                PEC — La pizza artisanale a Ille-sur-Tet
+                PEC — La pizza artisanale à Ille-sur-Têt
               </h1>
               <p className="max-w-2xl text-base leading-relaxed text-[#A0A0A0] sm:text-lg">
-                Des pizzas genereuses, une pate travaillee, des ingredients selectionnes et le gout du vrai.
+                Des pizzas généreuses, une pâte travaillée, des ingrédients sélectionnés et le goût du vrai.
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
@@ -385,7 +413,7 @@ export default function Page() {
       >
         <motion.div variants={sectionVariant} className="mb-10 flex items-end justify-between gap-5">
           <div>
-            <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#2E7D32]">Menu selectionne</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#2E7D32]">Menu sélectionné</p>
             <h2 className="text-3xl font-semibold sm:text-4xl">Des pizzas gourmandes qui marquent les esprits</h2>
           </div>
         </motion.div>
@@ -399,7 +427,7 @@ export default function Page() {
               tabIndex={0}
               role="button"
               aria-haspopup="dialog"
-              aria-label={`Details de la pizza ${pizza.name}`}
+              aria-label={`Détails de la pizza ${pizza.name}`}
               onClick={() => setSelectedPizza(pizza)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -446,9 +474,9 @@ export default function Page() {
         className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-8"
       >
         <div className="rounded-[2.2rem] border border-white/10 bg-[#1A1A1A] p-8 sm:p-12">
-          <p className="mb-4 text-xs uppercase tracking-[0.16em] text-[#2E7D32]">A propos de PEC</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.16em] text-[#2E7D32]">À propos de PEC</p>
           <p className="max-w-4xl text-lg leading-relaxed text-[#F5F5F5]/88">
-            Chez PEC, chaque pizza est preparee avec soin, avec une pate travaillee, des ingredients selectionnes et une cuisson maitrisee. Notre objectif : proposer une pizza genereuse, savoureuse et reguliere, au coeur d&apos;Ille-sur-Tet.
+            Chez PEC, chaque pizza est préparée avec soin, avec une pâte travaillée, des ingrédients sélectionnés et une cuisson maîtrisée. Notre objectif : proposer une pizza généreuse, savoureuse et régulière, au cœur d&apos;Ille-sur-Têt.
           </p>
         </div>
       </motion.section>
@@ -503,7 +531,7 @@ export default function Page() {
         <div className="rounded-[2.2rem] border border-white/20 bg-[linear-gradient(125deg,rgba(198,40,40,0.28),rgba(11,11,11,0.9),rgba(46,125,50,0.24))] p-8 sm:p-12">
           <h3 className="mb-3 text-3xl font-semibold sm:text-4xl">Une envie de pizza ce soir ?</h3>
           <p className="mb-8 max-w-2xl text-[#A0A0A0]">
-            Une equipe rapide, une qualite constante et des recettes qui donnent vraiment envie de recommander.
+            Une équipe rapide, une qualité constante et des recettes qui donnent vraiment envie de recommander.
           </p>
           <div className="flex flex-wrap gap-4">
             <motion.a
@@ -526,7 +554,7 @@ export default function Page() {
               className="rounded-full border border-[#2E7D32]/45 bg-[#2E7D32]/15 px-6 py-3 text-sm font-semibold text-[#F5F5F5] transition hover:bg-[#2E7D32]/25"
             >
               <span className="inline-flex items-center gap-2">
-                Voir l&apos;itineraire
+                Voir l&apos;itinéraire
                 <MapPin className="h-4 w-4" />
               </span>
             </motion.a>
@@ -549,7 +577,7 @@ export default function Page() {
               <MapPin className="h-6 w-6 text-[#2E7D32]" />
             </h2>
             <div className="space-y-3 rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-              <p className="text-xs uppercase tracking-[0.14em] text-[#A0A0A0]">Etablissement</p>
+              <p className="text-xs uppercase tracking-[0.14em] text-[#A0A0A0]">Établissement</p>
               <p className="text-[#F5F5F5]/88">PEC</p>
               <a
                 href="https://www.google.com/maps/search/?api=1&query=59+avenue+Pasteur+66130+Ille-sur-Tet"
@@ -558,7 +586,7 @@ export default function Page() {
                 className="group inline-flex flex-wrap items-center gap-2 text-sm text-[#A0A0A0] transition hover:text-[#2E7D32]"
               >
                 <span className="font-medium text-[#F5F5F5] underline decoration-white/20 underline-offset-4 transition group-hover:decoration-[#2E7D32]/80">
-                  59 avenue Pasteur, 66130 Ille-sur-Tet
+                  59 avenue Pasteur, 66130 Ille-sur-Têt
                 </span>
                 <span className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#2E7D32]">
                   <Leaf className="h-3.5 w-3.5" />
@@ -568,7 +596,7 @@ export default function Page() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-[#C62828]/30 bg-[#C62828]/10 p-4">
-                <p className="mb-1 text-xs uppercase tracking-[0.12em] text-[#F5F5F5]/70">Telephone</p>
+                <p className="mb-1 text-xs uppercase tracking-[0.12em] text-[#F5F5F5]/70">Téléphone</p>
                 <a
                   href={`tel:${siteConfig.telephone}`}
                   className="group inline-flex flex-col gap-1 text-sm font-medium text-[#F5F5F5] transition hover:text-white"
@@ -585,14 +613,14 @@ export default function Page() {
               <div className="rounded-2xl border border-[#2E7D32]/30 bg-[#2E7D32]/10 p-4">
                 <p className="mb-1 text-xs uppercase tracking-[0.12em] text-[#F5F5F5]/70">Horaires</p>
                 <p className="text-sm font-medium text-[#F5F5F5]">18h00 - 22H</p>
-                <p className="text-xs text-[#A0A0A0]">Tous les jours, mardi fermee</p>
+                <p className="text-xs text-[#A0A0A0]">Tous les jours, mardi fermée</p>
               </div>
             </div>
           </div>
           <div className="flex flex-col justify-center gap-4">
             <div className="overflow-hidden rounded-2xl border border-white/10 shadow-[0_14px_35px_rgba(0,0,0,0.35)]">
               <iframe
-                title="Carte PEC Ille-sur-Tet"
+                title="Carte PEC Ille-sur-Têt"
                 src="https://maps.google.com/maps?q=59%20avenue%20Pasteur%2066130%20Ille-sur-Tet&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 className="h-56 w-full"
                 loading="lazy"
@@ -630,7 +658,7 @@ export default function Page() {
                 type="button"
                 className="absolute right-4 top-4 z-10 rounded-full border border-white/15 bg-white/5 p-2 text-[#F5F5F5] transition hover:bg-white/10"
                 onClick={() => setSelectedPizza(null)}
-                aria-label="Fermer la fenetre"
+                aria-label="Fermer la fenêtre"
               >
                 <X className="h-5 w-5" aria-hidden />
               </button>
@@ -684,7 +712,7 @@ export default function Page() {
             />
             <div className="space-y-2">
               <p className="text-sm font-semibold tracking-[0.12em] text-[#F5F5F5]">PEC © 2026</p>
-              <p className="text-sm text-[#A0A0A0]">Pizzeria artisanale a Ille-sur-Tet</p>
+              <p className="text-sm text-[#A0A0A0]">Pizzeria artisanale à Ille-sur-Têt</p>
               <a
                 href="https://www.pappers.fr/entreprise/pec-102377082"
                 target="_blank"
@@ -698,7 +726,7 @@ export default function Page() {
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#2E7D32]/35 bg-[#2E7D32]/10 px-4 py-2 text-xs font-medium text-[#F5F5F5]">
               <MapPin className="h-3.5 w-3.5" />
-              Ille-sur-Tet
+              Ille-sur-Têt
             </span>
             <a
               href="https://gomanger.fr"
