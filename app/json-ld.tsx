@@ -36,7 +36,7 @@ export function JsonLdRestaurant() {
       "@type": "OrderAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://gomanger.fr",
+        urlTemplate: "https://gomanger.fr/restaurants/ille-sur-tet/1132/pizza-pec",
         inLanguage: "fr-FR",
         actionPlatform: [
           "http://schema.org/DesktopWebPlatform",

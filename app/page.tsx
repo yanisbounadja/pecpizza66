@@ -279,7 +279,7 @@ export default function Page() {
               Commander
             </a>
             <a
-              href="https://gomanger.fr"
+              href="https://gomanger.fr/restaurants/ille-sur-tet/1132/pizza-pec"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[#C62828]/45 bg-[#C62828]/22 px-4 py-2 text-sm font-medium text-white transition hover:scale-[1.04] hover:bg-[#C62828]/32"
@@ -729,7 +729,7 @@ export default function Page() {
               Ille-sur-Têt
             </span>
             <a
-              href="https://gomanger.fr"
+              href="https://gomanger.fr/restaurants/ille-sur-tet/1132/pizza-pec"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[#C62828]/35 bg-[#C62828]/15 px-4 py-2 text-xs font-semibold text-[#F5F5F5] shadow-[0_8px_20px_rgba(198,40,40,0.22)] transition hover:-translate-y-0.5 hover:bg-[#C62828]/25"
